@@ -17,7 +17,7 @@ DockMagic is a shell script created to facilitate the quick deployment of Docker
 
 **Clone the Repository to your home directory:**
 
-git clone [https://github.com/yourusername/DockMagic.git](https://github.com/jnuts74/dock-magic.git)
+git clone https://github.com/jnuts74/dock-magic.git
 
 **Set shell script permissions to execute:**
 
