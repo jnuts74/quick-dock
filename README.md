@@ -2,9 +2,10 @@
 
 # DockMagic: A Streamlined Docker Deployment
 
-Simplify your Docker deployment workflow with DockMagic. Manage your Docker instances effortlessly with Portainer and stay ahead with automated updates using Watchtower.
+Simplify your Docker deployment workflow with DockMagic. 
+Manage your Docker instances effortlessly with Portainer and stay ahead with automated updates using Watchtower.
 
-DockMagic is a shell script created to facilitate the quick deployment of Docker on new Linux systems. It automates the installation of system updates, Docker, Portainer for managing Docker instances, and Watchtower for automating container updates and security patches.
+DockMagic is a shell script created to facilitate the quick deployment of Docker on new Linux systems. It automates the installation of Linux system updates and installs Docker with Portainer for managing Docker instances and applications, and Watchtower for automating container image updates and security patches.
 
 ## Key Features
 
