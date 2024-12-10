@@ -1,11 +1,11 @@
-# dock-magic
+# quick-dock
 
-# DockMagic: A Streamlined Docker Deployment
+# QuickDock: A Streamlined Docker Deployment
 
-Simplify your Docker deployment workflow with DockMagic. 
+Simplify your Docker deployment workflow with QuickDock. 
 Manage your Docker instances effortlessly with Portainer and stay ahead with automated updates using Watchtower.
 
-DockMagic is a shell script created to facilitate the quick deployment of Docker on new Linux systems. It automates the installation of Linux system updates and installs Docker with Portainer for managing Docker instances and applications, and Watchtower for automating container image updates and security patches.
+QuickDock is a shell script created to facilitate the quick deployment of Docker on new Linux systems. It automates the installation of Linux system updates and installs Docker with Portainer for managing Docker instances and applications, and Watchtower for automating container image updates and security patches.
 
 ## Key Features
 
@@ -17,15 +17,15 @@ DockMagic is a shell script created to facilitate the quick deployment of Docker
 
 **Clone the Repository to your home directory:**
 
-git clone https://github.com/jnuts74/dock-magic.git
+git clone https://github.com/jnuts74/quick_dock.git
 
 **Set shell script permissions to execute:**
 
-sudo chmod +x dockmagic.sh
+sudo chmod +x quick_dock.sh
 
 **Execute the script to start the automated Docker setup process:**
 
-./dockmagic.sh
+./quick_dock.sh
 
 ## Usage
 
