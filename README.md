@@ -16,7 +16,7 @@ QuickDock is a shell script created to facilitate the quick deployment of Docker
 
 **Clone the Repository to your home directory:**
 
-git clone https://github.com/jnuts74/quick_dock.git
+git clone https://github.com/jnuts74/quick-dock.git
 
 **Set shell script permissions to execute:**
 
