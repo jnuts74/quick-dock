@@ -20,11 +20,11 @@ git clone https://github.com/jnuts74/quick_dock.git
 
 **Set shell script permissions to execute:**
 
-sudo chmod +x quick_dock.sh
+sudo chmod +x quickdock.sh
 
 **Execute the script to start the automated Docker setup process:**
 
-./quick_dock.sh
+./quickdock.sh
 
 ## Usage
 
