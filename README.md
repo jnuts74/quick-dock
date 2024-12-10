@@ -24,7 +24,7 @@ sudo chmod +x quickdock.sh
 
 **Execute the script to start the automated Docker setup process:**
 
-./quickdock.sh
+sudo ./quickdock.sh
 
 ## Usage
 
