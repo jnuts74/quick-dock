@@ -1,4 +1,3 @@
-# quick-dock
 
 # QuickDock: A Streamlined Docker Deployment
 
