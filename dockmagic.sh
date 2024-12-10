@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Welcome to DockMagic! A Streamlined Docker Deployment For New Linux System Builds!
+# Welcome to QuickDock! A Streamlined Docker Deployment For New Linux System Builds!
 # This script automates the installation of system updates, Docker, Portainer, and Watchtower on a Linux system.
 # It uses sudo privileges initially and ensures that the rest of the script can run without further sudo prompts.
 # The script is designed to run on Ubuntu-based systems and is fully automated to answer 'yes' to all prompts.
@@ -64,7 +64,7 @@ if docker ps --filter "name=portainer" --filter "name=watchtower" | grep -q "por
   echo "Deployment completed successfully!"
   echo "You can access your Docker environment:"
   echo "Locally @ https://localhost:9443"
-  echo "Remotely @ https://ip:9443"
+  echo "Remotely @ https://host-ip:9443"
 else
   echo "Deployment failed. Please check Docker logs for more details."
   exit 1
