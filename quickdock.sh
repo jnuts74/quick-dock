@@ -13,33 +13,52 @@ fi
 
 # Update and upgrade the system
 echo "Updating and upgrading the system..."
-apt update -y && apt upgrade -y
+if ! apt update -y && apt upgrade -y; then
+  echo "System update failed. Exiting."
+  exit 1
+fi
 
 # Install necessary packages for Docker installation
 echo "Installing necessary packages..."
-apt install -y apt-transport-https curl ca-certificates gnupg lsb-release
+if ! apt install -y apt-transport-https curl ca-certificates gnupg lsb-release; then
+  echo "Failed to install necessary packages. Exiting."
+  exit 1
+fi
 
 # Add Docker's official GPG key
 echo "Adding Docker's GPG key..."
-mkdir -p /etc/apt/keyrings
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+if ! curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/docker.asc; then
+  echo "Failed to add Docker's GPG key. Exiting."
+  exit 1
+fi
 
 # Set up the Docker stable repository
 echo "Setting up Docker repository..."
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
+if ! echo "deb [arch=$(dpkg --print-architecture)] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null; then
+  echo "Failed to set up Docker repository. Exiting."
+  exit 1
+fi
 
 # Update the package index
 echo "Updating package index..."
-apt update -y
+if ! apt update -y; then
+  echo "Package index update failed. Exiting."
+  exit 1
+fi
 
 # Install Docker
 echo "Installing Docker..."
-apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+if ! apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin; then
+  echo "Docker installation failed. Exiting."
+  exit 1
+fi
 
 # Enable Docker to start on boot and start Docker service
 echo "Enabling and starting Docker service..."
-systemctl enable docker
-systemctl start docker
+if ! systemctl enable docker && systemctl start docker; then
+  echo "Failed to enable or start Docker service. Exiting."
+  exit 1
+fi
 
 # Check if Docker is running
 if systemctl is-active --quiet docker; then
@@ -50,13 +69,21 @@ else
 fi
 
 # Deploy Portainer
-echo "Deploying Portainer..."
+echo "Deploying Portainer with latest version..."
 docker volume create portainer_data
-docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:2.21.4
+if ! docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v portainer_data:/data portainer/portainer-ce:latest; then
+  echo "Portainer deployment failed. Exiting."
+  exit 1
+fi
 
 # Deploy Watchtower
 echo "Deploying Watchtower..."
-docker run --detach --name watchtower --volume /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower
+if ! docker run --detach --name watchtower --volume /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower; then
+  echo "Watchtower deployment failed. Exiting."
+  exit 1
+fi
 
 # Validate that Portainer and Watchtower are running
 echo "Validating Portainer and Watchtower deployment..."
